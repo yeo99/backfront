@@ -22,6 +22,11 @@ apis: ['./routes/*.js'], // files containing annotations as above
   };
 const openapiSpec = swaggerJsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpec));
+
+// CORS 설정(서버에서의 해결방법), 프록시를 이용한 클라단에서의 해결방법도 있다.
+var cors = require('cors');
+app.use(cors());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
